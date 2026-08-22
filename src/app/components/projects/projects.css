@@ -1,0 +1,6 @@
+.projects-container { padding: 20px; }
+.content-list { padding: 15px; }
+.content-item { display: flex; margin-bottom: 20px; gap: 20px; align-items: start; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+.content-image { max-width: 200px; height: auto; border-radius: 4px; }
+.content-text { flex: 1; }
+h4 { margin-top: 0; }

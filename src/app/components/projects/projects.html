@@ -1,0 +1,24 @@
+<div class="projects-container">
+  <h2>Other Projects</h2>
+  <div class="content-list">
+    @for (item of otherProjects(); track item.id) {
+      <div class="content-item">
+        @if (item.imageUrl) {
+          <img [src]="'http://localhost:3000' + item.imageUrl" [alt]="item.title" class="content-image">
+        }
+        <div class="content-text">
+          @if (item.title) {
+            <h4>{{ item.title }}</h4>
+          }
+          @if (item.description) {
+            <p>{{ item.description }}</p>
+          }
+        </div>
+      </div>
+    } @empty {
+      <div>
+        <p>No other projects found.</p>
+      </div>
+    }
+  </div>
+</div>

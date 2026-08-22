@@ -1,0 +1,9 @@
+.portfolio-container { padding: 20px; }
+.section { margin-bottom: 20px; border-bottom: 1px solid #ccc; }
+.clickable { cursor: pointer; user-select: none; padding: 10px; background: #f9f9f9; }
+.clickable:hover { background: #eee; }
+.content-list { padding: 15px; }
+.content-item { display: flex; margin-bottom: 20px; gap: 20px; align-items: start; }
+.content-image { max-width: 200px; height: auto; border-radius: 4px; }
+.content-text { flex: 1; }
+h4 { margin-top: 0; }

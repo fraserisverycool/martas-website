@@ -1,0 +1,78 @@
+<div class="portfolio-container">
+  <h2>Portfolio</h2>
+
+  <div class="section">
+    <h3 (click)="toggleSection('tattoos')" class="clickable">
+      Tattoos {{ expandedSections['tattoos'] ? '▼' : '▶' }}
+    </h3>
+    @if (expandedSections['tattoos']) {
+      <div class="content-list">
+        @for (item of tattoos(); track item.id) {
+          <div class="content-item">
+            @if (item.imageUrl) {
+              <img [src]="'http://localhost:3000' + item.imageUrl" [alt]="item.title" class="content-image">
+            }
+            <div class="content-text">
+              @if (item.title) {
+                <h4>{{ item.title }}</h4>
+              }
+              @if (item.description) {
+                <p>{{ item.description }}</p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="section">
+    <h3 (click)="toggleSection('sketches')" class="clickable">
+      Sketches {{ expandedSections['sketches'] ? '▼' : '▶' }}
+    </h3>
+    @if (expandedSections['sketches']) {
+      <div class="content-list">
+        @for (item of sketches(); track item.id) {
+          <div class="content-item">
+            @if (item.imageUrl) {
+              <img [src]="'http://localhost:3000' + item.imageUrl" [alt]="item.title" class="content-image">
+            }
+            <div class="content-text">
+              @if (item.title) {
+                <h4>{{ item.title }}</h4>
+              }
+              @if (item.description) {
+                <p>{{ item.description }}</p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="section">
+    <h3 (click)="toggleSection('tattooProjects')" class="clickable">
+      Tattoo Projects {{ expandedSections['tattooProjects'] ? '▼' : '▶' }}
+    </h3>
+    @if (expandedSections['tattooProjects']) {
+      <div class="content-list">
+        @for (item of tattooProjects(); track item.id) {
+          <div class="content-item">
+            @if (item.imageUrl) {
+              <img [src]="'http://localhost:3000' + item.imageUrl" [alt]="item.title" class="content-image">
+            }
+            <div class="content-text">
+              @if (item.title) {
+                <h4>{{ item.title }}</h4>
+              }
+              @if (item.description) {
+                <p>{{ item.description }}</p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="admin-container">
+  <h1>Admin Panel</h1>
+
+  @if (!isLoggedIn) {
+    <div class="login-form">
+      <p>Please enter the password to access content management:</p>
+      <input type="password" [(ngModel)]="password" placeholder="Password" (keyup.enter)="login()">
+      <button (click)="login()">Login</button>
+      @if (loginError) {
+        <p class="error">{{ loginError }}</p>
+      }
+    </div>
+  }
+
+  @if (isLoggedIn) {
+    <div class="header-actions">
+      <div class="type-selector">
+        @for (type of contentTypes; track type) {
+          <button [class.active]="selectedType() === type"
+                  (click)="selectType(type)">
+            {{ type | titlecase }}
+          </button>
+        }
+      </div>
+      <button (click)="logout()">Logout</button>
+    </div>
+
+    <section class="add-content">
+      <h2>Add New Content</h2>
+      <div class="form-group">
+        <label>Title:</label>
+        <input type="text" [(ngModel)]="newItem.title" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea [(ngModel)]="newItem.description" placeholder="Description"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Image:</label>
+        <input type="file" (change)="onFileSelected($event)">
+      </div>
+      <button (click)="createItem()">Create</button>
+    </section>
+
+    <hr>
+
+    <section class="manage-content">
+      <h2>Manage Existing Content</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of filteredContentItems(); track item.id) {
+            <tr>
+              <td>{{ item.title }}</td>
+              <td>{{ item.description }}</td>
+              <td>
+                @if (item.imageUrl) {
+                  <img [src]="'http://localhost:3000' + item.imageUrl" alt="thumbnail" width="50">
+                }
+              </td>
+              <td>
+                <button (click)="startEdit(item)">Edit</button>
+                <button (click)="deleteItem(item.id!)" class="delete-btn">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Edit Modal/Overlay -->
+    @if (editingItem) {
+      <div class="edit-overlay">
+        <div class="edit-modal">
+          <h3>Edit Content</h3>
+          <div class="form-group">
+            <label>Type:</label>
+            <select [(ngModel)]="editingItem.type">
+              <option value="tattoos">Tattoos</option>
+              <option value="sketches">Sketches</option>
+              <option value="tattoo-projects">Tattoo Projects</option>
+              <option value="other-projects">Other Projects</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Title:</label>
+            <input type="text" [(ngModel)]="editingItem.title" placeholder="Title">
+          </div>
+          <div class="form-group">
+            <label>Description:</label>
+            <textarea [(ngModel)]="editingItem.description" placeholder="Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label>New Image (optional):</label>
+            <input type="file" (change)="onEditFileSelected($event)">
+          </div>
+          <div class="modal-actions">
+            <button (click)="updateItem()">Save Changes</button>
+            <button (click)="cancelEdit()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>
