@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     forkJoin({
       tattoos: this.contentService.getAllContent('tattoos'),
       sketches: this.contentService.getAllContent('sketches'),
-      tattooProjects: this.contentService.getAllContent('tattoo-projects')
+      tattooProjects: this.contentService.getAllContent('tattoo projects')
     }).subscribe(({ tattoos, sketches, tattooProjects }) => {
       const allPortfolio = [...tattoos, ...sketches, ...tattooProjects].filter(i => i.imageUrl);
       if (allPortfolio.length > 0) {
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    this.contentService.getAllContent('other-projects').subscribe(data => {
+    this.contentService.getAllContent('other projects').subscribe(data => {
       const withImages = data.filter(i => i.imageUrl);
       if (withImages.length > 0) {
         const randomItem = withImages[Math.floor(Math.random() * withImages.length)];
