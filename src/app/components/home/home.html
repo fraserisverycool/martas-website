@@ -1,1 +1,38 @@
-<p>home works!</p>
+<div class="home-container">
+  @if (content()) {
+    <div class="page-content">
+      @if (content()?.title) {
+        <h1>{{ content()?.title }}</h1>
+      }
+      @if (content()?.imageUrl) {
+        <img [src]="'http://localhost:3000' + content()?.imageUrl" [alt]="content()?.title" class="main-image">
+      }
+      @if (content()?.description) {
+        <p class="description">{{ content()?.description }}</p>
+      }
+
+      <div class="navigation-buttons">
+        <div class="image-buttons">
+          <a routerLink="/portfolio" class="image-button">
+            @if (portfolioImage()) {
+              <img [src]="'http://localhost:3000' + portfolioImage()" alt="Portfolio Preview">
+            }
+            <span class="button-label">Portfolio</span>
+          </a>
+          <a routerLink="/projects" class="image-button">
+            @if (otherProjectsImage()) {
+              <img [src]="'http://localhost:3000' + otherProjectsImage()" alt="Other Projects Preview">
+            }
+            <span class="button-label">Other Projects</span>
+          </a>
+        </div>
+        <div class="link-buttons">
+          <a routerLink="/about" class="link-button">About Me</a>
+          <a routerLink="/contact" class="link-button">Contact</a>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <p>Welcome to Marta's Website!</p>
+  }
+</div>

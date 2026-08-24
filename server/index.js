@@ -68,21 +68,37 @@ app.post('/api/content', adminAuth, upload.single('image'), (req, res) => {
     return res.status(400).json({ error: 'Type is required' });
   }
 
-  const sql = `INSERT INTO content (type, title, description, imageUrl) VALUES (?, ?, ?, ?)`;
-  const params = [type, title, description, imageUrl];
-
-  db.run(sql, params, function(err) {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.status(201).json({
-      id: this.lastID,
-      type,
-      title,
-      description,
-      imageUrl
+  // Check for single-item types
+  const singleItemTypes = ['home', 'about', 'contact'];
+  if (singleItemTypes.includes(type)) {
+    db.get('SELECT id FROM content WHERE type = ?', [type], (err, row) => {
+      if (err) return res.status(500).json({ error: err.message });
+      if (row) {
+        return res.status(400).json({ error: `Content of type '${type}' already exists. Please update the existing item instead.` });
+      }
+      insertContent();
     });
-  });
+  } else {
+    insertContent();
+  }
+
+  function insertContent() {
+    const sql = `INSERT INTO content (type, title, description, imageUrl) VALUES (?, ?, ?, ?)`;
+    const params = [type, title, description, imageUrl];
+
+    db.run(sql, params, function(err) {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.status(201).json({
+        id: this.lastID,
+        type,
+        title,
+        description,
+        imageUrl
+      });
+    });
+  }
 });
 
 // READ ALL

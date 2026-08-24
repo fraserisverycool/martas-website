@@ -1,1 +1,17 @@
-<p>contact works!</p>
+<div class="contact-container">
+  @if (content()) {
+    <div class="page-content">
+      @if (content()?.title) {
+        <h1>{{ content()?.title }}</h1>
+      }
+      @if (content()?.imageUrl) {
+        <img [src]="'http://localhost:3000' + content()?.imageUrl" [alt]="content()?.title" class="main-image">
+      }
+      @if (content()?.description) {
+        <p class="description">{{ content()?.description }}</p>
+      }
+    </div>
+  } @else {
+    <p>Contact Marta at...</p>
+  }
+</div>

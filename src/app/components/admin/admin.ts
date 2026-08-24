@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
   loginError = '';
 
   contentItems = signal<ContentItem[]>([]);
-  contentTypes = ['tattoos', 'sketches', 'tattoo-projects', 'other-projects'];
+  contentTypes = ['tattoos', 'sketches', 'tattoo projects', 'other projects', 'home', 'about', 'contact'];
   selectedType = signal('tattoos');
 
   newItem: ContentItem = { type: 'tattoos', title: '', description: '' };
@@ -28,6 +28,15 @@ export class AdminComponent implements OnInit {
   filteredContentItems = computed(() =>
     this.contentItems().filter(item => item.type === this.selectedType())
   );
+
+  isSingleItemType = computed(() =>
+    ['home', 'about', 'contact'].includes(this.selectedType())
+  );
+
+  canAddMore = computed(() => {
+    if (!this.isSingleItemType()) return true;
+    return this.filteredContentItems().length === 0;
+  });
 
   constructor(private contentService: ContentService) {}
 

@@ -120,3 +120,16 @@ th {
   color: white;
   border-color: #333;
 }
+
+.add-content-disabled {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.add-content-disabled p {
+  margin: 0;
+}
