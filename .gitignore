@@ -46,3 +46,4 @@ Thumbs.db
 # Backend
 server/uploads/*
 server/node_modules
+server/database.sqlite
