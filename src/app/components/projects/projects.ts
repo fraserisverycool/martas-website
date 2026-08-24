@@ -14,6 +14,6 @@ export class ProjectsComponent implements OnInit {
   constructor(public contentService: ContentService) {}
 
   ngOnInit() {
-    this.contentService.getAllContent('other-projects').subscribe(data => this.otherProjects.set(data));
+    this.contentService.getAllContent('other projects').subscribe(data => this.otherProjects.set(data));
   }
 }

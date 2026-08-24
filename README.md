@@ -18,7 +18,7 @@ The server will be available at `http://localhost:3000`.
 In production use pm2 to run it:
 
 ```bash
-pm2 start index.js --name "MartasDatabase"
+PORT=3001 pm2 start index.js --name "MartasDatabase"
 ```
 
 ### API Endpoints

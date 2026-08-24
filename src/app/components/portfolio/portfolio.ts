@@ -24,7 +24,7 @@ export class PortfolioComponent implements OnInit {
   ngOnInit() {
     this.contentService.getAllContent('tattoos').subscribe(data => this.tattoos.set(data));
     this.contentService.getAllContent('sketches').subscribe(data => this.sketches.set(data));
-    this.contentService.getAllContent('tattoo-projects').subscribe(data => this.tattooProjects.set(data));
+    this.contentService.getAllContent('tattoo projects').subscribe(data => this.tattooProjects.set(data));
   }
 
   toggleSection(section: string) {
