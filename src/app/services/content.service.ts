@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface ContentItem {
   id?: number;
@@ -15,9 +16,8 @@ export interface ContentItem {
   providedIn: 'root'
 })
 export class ContentService {
-  private apiUrl = window.location.hostname === 'localhost'
-    ? 'http://localhost:3000/api/content'
-    : '/api/content';
+  private apiUrl = environment.apiUrl;
+  public imageBaseUrl = environment.imageBaseUrl;
 
   constructor(private http: HttpClient) {}
 

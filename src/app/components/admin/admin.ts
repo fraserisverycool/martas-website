@@ -38,7 +38,7 @@ export class AdminComponent implements OnInit {
     return this.filteredContentItems().length === 0;
   });
 
-  constructor(private contentService: ContentService) {}
+  constructor(public contentService: ContentService) {}
 
   ngOnInit() {
     const savedPassword = sessionStorage.getItem('adminPassword');

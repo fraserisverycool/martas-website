@@ -11,7 +11,7 @@ import { ContentService, ContentItem } from '../../services/content.service';
 export class AboutComponent implements OnInit {
   content = signal<ContentItem | null>(null);
 
-  constructor(private contentService: ContentService) {}
+  constructor(public contentService: ContentService) {}
 
   ngOnInit() {
     this.contentService.getAllContent('about').subscribe(data => {

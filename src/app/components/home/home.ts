@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   portfolioImage = signal<string | null>(null);
   otherProjectsImage = signal<string | null>(null);
 
-  constructor(private contentService: ContentService) {}
+  constructor(public contentService: ContentService) {}
 
   ngOnInit() {
     this.contentService.getAllContent('home').subscribe(data => {

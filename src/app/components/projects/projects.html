@@ -4,7 +4,7 @@
     @for (item of otherProjects(); track item.id) {
       <div class="content-item">
         @if (item.imageUrl) {
-          <img [src]="'http://localhost:3000' + item.imageUrl" [alt]="item.title" class="content-image">
+          <img [src]="contentService.imageBaseUrl + item.imageUrl" [alt]="item.title" class="content-image">
         }
         <div class="content-text">
           @if (item.title) {

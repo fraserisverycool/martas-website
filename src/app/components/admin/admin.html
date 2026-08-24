@@ -68,7 +68,7 @@
               <td>{{ item.description }}</td>
               <td>
                 @if (item.imageUrl) {
-                  <img [src]="'http://localhost:3000' + item.imageUrl" alt="thumbnail" width="50">
+                  <img [src]="contentService.imageBaseUrl + item.imageUrl" alt="thumbnail" width="50">
                 }
               </td>
               <td>

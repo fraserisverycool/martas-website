@@ -11,7 +11,7 @@ import { ContentService, ContentItem } from '../../services/content.service';
 export class ProjectsComponent implements OnInit {
   otherProjects = signal<ContentItem[]>([]);
 
-  constructor(private contentService: ContentService) {}
+  constructor(public contentService: ContentService) {}
 
   ngOnInit() {
     this.contentService.getAllContent('other-projects').subscribe(data => this.otherProjects.set(data));

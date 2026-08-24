@@ -19,7 +19,7 @@ export class PortfolioComponent implements OnInit {
     tattooProjects: false
   };
 
-  constructor(private contentService: ContentService) {}
+  constructor(public contentService: ContentService) {}
 
   ngOnInit() {
     this.contentService.getAllContent('tattoos').subscribe(data => this.tattoos.set(data));

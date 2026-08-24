@@ -5,7 +5,7 @@
         <h1>{{ content()?.title }}</h1>
       }
       @if (content()?.imageUrl) {
-        <img [src]="'http://localhost:3000' + content()?.imageUrl" [alt]="content()?.title" class="main-image">
+        <img [src]="contentService.imageBaseUrl + content()?.imageUrl" [alt]="content()?.title" class="main-image">
       }
       @if (content()?.description) {
         <p class="description">{{ content()?.description }}</p>
